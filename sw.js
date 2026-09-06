@@ -1,4 +1,4 @@
-const CACHE = 'shock-activate-v4';
+const CACHE = 'shock-activate-v5';
 const PRECACHE = ['./manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-180.png'];
 
 self.addEventListener('install', (e) => {

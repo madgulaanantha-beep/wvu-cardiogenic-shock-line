@@ -1,7 +1,7 @@
 {
-  "name": "WVU Cardiogenic Shock Team",
-  "short_name": "Shock Team",
-  "description": "One-tap activation of the WVU HVI Cardiogenic Shock Team",
+  "name": "WVU Cardiogenic Shock Line",
+  "short_name": "WVU Shock Line",
+  "description": "One-tap activation of the WVU HVI Cardiogenic Shock Team via MARS",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0b1220",
