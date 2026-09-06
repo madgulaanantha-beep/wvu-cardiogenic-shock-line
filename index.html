@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>WVU Shock Team — Activate</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-title" content="Shock Team" />
+  <meta name="description" content="One-tap activation of the WVU HVI Cardiogenic Shock Team via MARS." />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #141e30;
+      --card2: #1a2538;
+      --line: #2a3a55;
+      --text: #f2f5fa;
+      --muted: #9aa8bf;
+      --red: #e11d2e;
+      --red-dark: #b01220;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #020617;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .phone {
+      max-width: 390px;
+      margin: 24px auto;
+      background: var(--bg);
+      min-height: 844px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55), 0 0 0 1px #1e293b;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 18px 20px 12px;
+      background: linear-gradient(180deg, #152036 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+    .brand .sub {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .badge {
+      flex-shrink: 0;
+      background: rgba(225,29,46,.15);
+      color: #fda4af;
+      border: 1px solid rgba(225,29,46,.35);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+    main { padding: 16px 16px 28px; flex: 1; }
+    .call-card {
+      background: linear-gradient(160deg, #1a0f14 0%, #221018 40%, #141e30 100%);
+      border: 1px solid rgba(225,29,46,.45);
+      border-radius: 20px;
+      padding: 18px 16px 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .call-card .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #fda4af;
+      margin-bottom: 8px;
+    }
+    .call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 64px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ef233c 0%, var(--red-dark) 100%);
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(225,29,46,.35);
+      margin: 8px 0 12px;
+    }
+    .call-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .number {
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: #fecdd3;
+      margin: 0 0 4px;
+    }
+    .hint {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .script {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .script h2 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .steps { list-style: none; margin: 0; padding: 0; }
+    .steps li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .steps li:first-child { border-top: none; padding-top: 0; }
+    .n {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #243447;
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+    }
+    .steps strong { color: #fff; font-weight: 700; }
+    .say {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #0f172a;
+      border-left: 3px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+    .say em { color: #93c5fd; font-style: normal; font-weight: 600; }
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+    }
+    .criteria {
+      display: grid;
+      gap: 8px;
+    }
+    .c-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      line-height: 1.35;
+      color: #e2e8f0;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .scai {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .scai span {
+      text-align: center;
+      padding: 10px 4px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: var(--card2);
+      color: var(--muted);
+    }
+    .scai .b { color: #fcd34d; border-color: rgba(245,158,11,.35); }
+    .scai .c, .scai .d, .scai .e {
+      color: #fff;
+      background: rgba(225,29,46,.25);
+      border-color: rgba(225,29,46,.5);
+    }
+    .scai-note {
+      margin: 10px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .scai-note b { color: #fda4af; }
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #1e293b;
+      border: 1px solid var(--line);
+      color: #cbd5e1;
+    }
+    .avail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #bbf7d0;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.25);
+      border-radius: 12px;
+    }
+    .avail::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(34,197,94,.15);
+    }
+    details.more {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0 14px;
+      margin-bottom: 12px;
+    }
+    details.more summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 0;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #93c5fd;
+    }
+    details.more summary::-webkit-details-marker { display: none; }
+    details.more[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+    .ami li { margin: 0 0 6px; font-size: 13px; color: #e2e8f0; }
+    footer {
+      padding: 8px 16px 20px;
+      text-align: center;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .mock-label {
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      margin: 8px 0 0;
+    }
+
+    .script-block {
+      margin-top: 12px;
+      padding: 12px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+    }
+    .script-block .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+    .script-block p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #e2e8f0;
+    }
+    .script-block p:last-child { margin-bottom: 0; }
+    .script-block .blank {
+      display: inline;
+      border-bottom: 1.5px dashed #64748b;
+      color: #94a3b8;
+      font-weight: 600;
+      padding: 0 2px;
+    }
+    .checklist {
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+    }
+    .checklist .row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.35;
+      padding: 2px 0;
+    }
+    .checklist .box {
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #64748b;
+      border-radius: 3px;
+      margin-top: 1px;
+    }
+    .mock-label { display: none; }
+    .phone {
+      margin: 0 auto;
+      border-radius: 0;
+      min-height: 100dvh;
+      max-width: 480px;
+      box-shadow: none;
+    }
+    body { background: var(--bg); }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <div class="brand">
+        <div>
+          <h1>WVU Cardiogenic Shock Team</h1>
+          <p class="sub">HVI · Ruby Memorial · Rapid response</p>
+        </div>
+        <div class="badge">Activate</div>
+      </div>
+    </header>
+    <main>
+      <div class="avail">Available 24/7 via MARS transfer line</div>
+
+      <div class="call-card">
+        <div class="eyebrow">One tap to activate</div>
+        <a class="call-btn" href="tel:+13045986000">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
+          Call shock team
+        </a>
+        <p class="number">MARS (304) 598-6000</p>
+        <p class="hint">Opens Phone · then press 1 for critically ill</p>
+      </div>
+
+      <div class="script">
+        <h2>Call path</h2>
+        <ol class="steps">
+          <li><span class="n">1</span><span>Call connects to <strong>MARS</strong></span></li>
+          <li><span class="n">2</span><span>Press <strong>1</strong> — critically ill patients</span></li>
+          <li><span class="n">3</span><span>Ask for <strong>Cardiology Blue</strong> (Advanced Heart Failure) for a <strong>cardiogenic shock</strong> consult</span></li>
+        </ol>
+        <div class="say">“I need <em>Cardiology Blue</em> for a cardiogenic shock activation / consult.”</div>
+
+        <div class="script-block">
+          <div class="label">Have ready (skip what you don’t know)</div>
+          <div class="checklist">
+            <div class="row"><span class="box"></span><span>Your name + facility</span></div>
+            <div class="row"><span class="box"></span><span>Patient location (ED / ICU / cath / floor)</span></div>
+            <div class="row"><span class="box"></span><span>Why you’re worried (AMI, ADHF, other)</span></div>
+            <div class="row"><span class="box"></span><span>SBP / HR</span></div>
+            <div class="row"><span class="box"></span><span>Lactate · EF if known</span></div>
+            <div class="row"><span class="box"></span><span>Pressors / inotropes · MCS already in</span></div>
+            <div class="row"><span class="box"></span><span>What you need (transfer / consult / cath)</span></div>
+            <div class="row"><span class="box"></span><span>MRN if asked</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>When to call — any of these</h2>
+        <div class="criteria">
+          <div class="c-item"><span class="dot"></span><span>LVEF &lt;35% + SBP &lt;90</span></div>
+          <div class="c-item"><span class="dot"></span><span>Lactate &gt;2 mmol/L</span></div>
+          <div class="c-item"><span class="dot"></span><span>End-organ hypoperfusion (↑Cr, ↑LFTs, ↓UOP)</span></div>
+          <div class="c-item"><span class="dot"></span><span>CI &lt;2.2 · PCWP &gt;15 · CVP &gt;15</span></div>
+          <div class="c-item"><span class="dot"></span><span>Clinical concern — when unsure, still call</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>SCAI staging</h2>
+        <div class="scai">
+          <span class="b">B watch</span>
+          <span class="c">C call</span>
+          <span class="d">D call</span>
+          <span class="e">E call</span>
+        </div>
+        <p class="scai-note"><b>Activate at stage C+</b>. Stage B: monitor closely. Unsure of stage? Call anyway.</p>
+      </div>
+
+      <details class="more">
+        <summary>AMI extras · team · after call</summary>
+        <p style="font-size:12px;color:#94a3b8;margin:0 0 8px;">Acute MI — also consider:</p>
+        <ul class="ami">
+          <li>SBP &lt;90 + lactate &gt;2</li>
+          <li>LVEDP &gt;20 mmHg</li>
+          <li>RV failure / biventricular shock</li>
+        </ul>
+        <p style="font-size:12px;color:#94a3b8;margin:12px 0 8px;">Who answers the activation</p>
+        <div class="team">
+          <span class="pill">Critical Care</span>
+          <span class="pill">Interventional Cardiology</span>
+          <span class="pill">Cardiac Surgery</span>
+          <span class="pill">Advanced Heart Failure</span>
+        </div>
+        <p style="font-size:12px;color:#94a3b8;margin:14px 0 10px;">Optional after the call (doesn’t block activation)</p>
+        <p style="font-size:13px;color:#e2e8f0;margin:0 0 12px;line-height:1.4;">Have MRN + activation time ready if asked — helps QI without slowing the call.</p>
+      </details>
+    </main>
+    <footer>
+      WVU Heart &amp; Vascular Institute · Heart &amp; Vascular Institute<br />Tap Share → Add to Home Screen for one-tap access
+    </footer>
+  </div>
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
