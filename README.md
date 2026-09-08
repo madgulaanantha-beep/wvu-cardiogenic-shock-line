@@ -7,3 +7,7 @@ One-tap referral page for referring clinicians.
 - Add to Home Screen for phone icon access
 
 Live: https://madgulaanantha-beep.github.io/wvu-cardiogenic-shock-line/
+
+
+## Discoverability
+Intentionally unlisted: `robots.txt` Disallow all + `noindex,nofollow` meta. Share the URL directly; do not submit to search engines.
